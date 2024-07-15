@@ -441,11 +441,11 @@ firebase.auth().onAuthStateChanged((user) => {
                             <input type="file" id="file-upload-${data[key].MinOfPO_ID}" />
                             <button onclick="uploadFile('${data[key].MinOfPO_ID}')">Upload</button>
                         </div>
-                        <div id="uploaded-files-${data[key].MinOfPO_ID}">
-                            <h3></h3>
-                            <ul id="files-list-${data[key].MinOfPO_ID}">
-                                <!-- سيتم إضافة الروابط هنا -->
-                            </ul>
+                      <div id="uploaded-files-${data[key].MinOfPO_ID}">
+    <h3>الملفات المرفوعة:</h3>
+    <ul id="files-list-${data[key].MinOfPO_ID}">
+        <!-- سيتم إضافة الصور هنا -->
+    </ul>
                         </div>
 
 
@@ -662,16 +662,25 @@ function loadFiles(minOfPO_ID) {
         snapshot.forEach(function(childSnapshot) {
             var file = childSnapshot.val();
             var listItem = document.createElement('li');
-            var link = document.createElement('a');
-            link.href = file.url;
-            link.textContent = file.name;
-            link.target = '_blank';
-            listItem.appendChild(link);
+            
+            // Check if the file is an image
+            if (file.url.endsWith('.jpg') || file.url.endsWith('.jpeg') || file.url.endsWith('.png') || file.url.endsWith('.gif')) {
+                var img = document.createElement('img');
+                img.src = file.url;
+                img.style.maxWidth = '100%'; // Ensure the image fits within the list item
+                listItem.appendChild(img);
+            } else {
+                var link = document.createElement('a');
+                link.href = file.url;
+                link.textContent = file.name;
+                link.target = '_blank';
+                listItem.appendChild(link);
+            }
+
             filesList.appendChild(listItem);
         });
     });
 }
-
 function showUploadConfirmation(fileName, downloadURL) {
     alert('File uploaded successfully!');
 
