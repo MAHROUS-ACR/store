@@ -653,6 +653,7 @@ function saveFileLink(minOfPO_ID, fileName, downloadURL) {
 }
 
 // Load files associated with a specific row
+// Load files associated with a specific row
 function loadFiles(minOfPO_ID) {
     var dbRef = firebase.database().ref(`files/${minOfPO_ID}`);
     dbRef.once('value', function(snapshot) {
@@ -662,7 +663,7 @@ function loadFiles(minOfPO_ID) {
         snapshot.forEach(function(childSnapshot) {
             var file = childSnapshot.val();
             var listItem = document.createElement('li');
-            
+
             // Check if the file is an image
             if (file.url.endsWith('.jpg') || file.url.endsWith('.jpeg') || file.url.endsWith('.png') || file.url.endsWith('.gif')) {
                 var img = document.createElement('img');
