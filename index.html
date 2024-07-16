@@ -207,6 +207,20 @@ background-color:#fff;
             line-height: 20px;
             border-radius: 13px;
         }
+     .image-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .image-item {
+            margin: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            width: 200px;
+        }
+        .image-item img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
     
 </script>
@@ -695,6 +709,17 @@ function showUploadConfirmation(fileName, downloadURL) {
     listItem.appendChild(link);
     filesList.appendChild(listItem);
 }
+     // Function to display uploaded images
+        function displayImage(url) {
+            var imageContainer = document.getElementById('imageContainer');
+            var imageElement = document.createElement('div');
+            imageElement.classList.add('image-item');
+            var img = document.createElement('img');
+            img.src = url;
+            img.alt = 'Uploaded Image';
+            imageElement.appendChild(img);
+            imageContainer.appendChild(imageElement);
+        }
     </script>
 </body>
 </html>
