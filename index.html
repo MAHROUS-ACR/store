@@ -419,12 +419,12 @@ firebase.auth().onAuthStateChanged((user) => {
                 if ((departmentFilter === '' || data[key].STATU === departmentFilter) &&
                     (clientFilter === '' || data[key].Kind === clientFilter)) {
 
-                    if (groupKey !== data[key].STATU) {
-                        groupKey = data[key].STATU;
+                    if (groupKey !== data[key].main2) {
+                        groupKey = data[key].main2;
                         const groupRow = `
                             <tr>
                                 <td colspan="30" style="background-color: #3498db; text-align: center;font-size: 30px;">
-                                    <strong>${groupKey}, ${data[key].Kind}, ${data[key].model}
+                                    <strong>${data[key].STATU}, ${data[key].Kind}, ${data[key].model}
                                 </td>
                              
                             </tr>`;
